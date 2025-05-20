@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Profissional } from "@/types/agendamento";
-import { FormLabel } from "@/components/ui/form";
+import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import ProfissionalCard from "./ProfissionalCard";
 
@@ -30,11 +30,11 @@ const ProfissionalSelector = ({
       
       {/* Filter by specialty */}
       <div className="mb-6">
-        <FormLabel>Filtrar por especialidade</FormLabel>
+        <Label htmlFor="especialidade-select">Filtrar por especialidade</Label>
         <Select 
           onValueChange={(value) => setFilteredEspecialidade(value === "todas" ? null : value)}
         >
-          <SelectTrigger className="w-full md:w-72">
+          <SelectTrigger id="especialidade-select" className="w-full md:w-72">
             <SelectValue placeholder="Todas as especialidades" />
           </SelectTrigger>
           <SelectContent>
