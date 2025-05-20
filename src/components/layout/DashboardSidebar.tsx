@@ -23,7 +23,8 @@ import {
 } from "@/components/ui/sidebar";
 
 const DashboardSidebar = () => {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
+  const isCollapsed = state === "collapsed";
   const location = useLocation();
   const currentPath = location.pathname;
 
@@ -57,9 +58,9 @@ const DashboardSidebar = () => {
   const isAiExpanded = aiItems.some(item => isActive(item.path));
 
   return (
-    <Sidebar className={`border-r ${collapsed ? "w-16" : "w-64"}`} collapsible>
+    <Sidebar className={`border-r ${isCollapsed ? "w-16" : "w-64"}`}>
       <SidebarContent>
-        <SidebarGroup defaultOpen={isMainExpanded}>
+        <SidebarGroup>
           <SidebarGroupLabel>Principal</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -68,7 +69,7 @@ const DashboardSidebar = () => {
                   <SidebarMenuButton asChild>
                     <NavLink to={item.path} end={item.path === "/"} className={getNavClasses}>
                       <item.icon className="h-4 w-4 shrink-0" />
-                      {!collapsed && <span>{item.title}</span>}
+                      {!isCollapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -77,7 +78,7 @@ const DashboardSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup defaultOpen={isAiExpanded} className="mt-4">
+        <SidebarGroup className="mt-4">
           <SidebarGroupLabel>IA & Análises</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -86,7 +87,7 @@ const DashboardSidebar = () => {
                   <SidebarMenuButton asChild>
                     <NavLink to={item.path} className={getNavClasses}>
                       <item.icon className="h-4 w-4 shrink-0" />
-                      {!collapsed && <span>{item.title}</span>}
+                      {!isCollapsed && <span>{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -102,7 +103,7 @@ const DashboardSidebar = () => {
                 <SidebarMenuButton asChild>
                   <NavLink to="/configuracoes" className={getNavClasses}>
                     <Settings className="h-4 w-4 shrink-0" />
-                    {!collapsed && <span>Configurações</span>}
+                    {!isCollapsed && <span>Configurações</span>}
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
