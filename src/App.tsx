@@ -12,6 +12,7 @@ import ProntuariosPage from "./pages/ProntuariosPage";
 import AssistenteIAPage from "./pages/AssistenteIAPage";
 import AnalisesPage from "./pages/AnalisesPage";
 import ConfiguracoesPage from "./pages/ConfiguracoesPage";
+import PublicAgendamentoPage from "./pages/PublicAgendamentoPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,10 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          {/* Rota pública para agendamento */}
+          <Route path="/agendar" element={<PublicAgendamentoPage />} />
+          
+          {/* Rotas protegidas do dashboard */}
           <Route path="/" element={<Dashboard><DashboardPage /></Dashboard>} />
           <Route path="/agendamentos" element={<Dashboard><AgendamentosPage /></Dashboard>} />
           <Route path="/pacientes" element={<Dashboard><PacientesPage /></Dashboard>} />
