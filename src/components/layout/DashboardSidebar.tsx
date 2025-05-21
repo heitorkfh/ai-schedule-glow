@@ -10,7 +10,7 @@ import {
   MessageSquare,
   Radio,
   Mail,
-  Tool,
+  Wrench,
   ChevronDown,
   ChevronRight
 } from "lucide-react";
@@ -57,7 +57,7 @@ const DashboardSidebar = () => {
   const marketingItems = [
     { title: "Leads", path: "/marketing/leads", icon: Users },
     { title: "Disparos", path: "/marketing/disparos", icon: Mail },
-    { title: "Ferramentas", path: "/marketing/ferramentas", icon: Tool },
+    { title: "Ferramentas", path: "/marketing/ferramentas", icon: Wrench },
     { title: "Configurações", path: "/marketing/configuracoes", icon: Settings },
   ];
 
