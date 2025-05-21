@@ -7,7 +7,12 @@ import {
   FileText, 
   Settings,
   Activity,
-  MessageSquare
+  MessageSquare,
+  Radio,
+  Mail,
+  Tool,
+  ChevronDown,
+  ChevronRight
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
@@ -19,14 +24,23 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  useSidebar
+  useSidebar,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton
 } from "@/components/ui/sidebar";
+import { useState } from "react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const DashboardSidebar = () => {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
   const location = useLocation();
   const currentPath = location.pathname;
+  
+  const [isMarketingOpen, setIsMarketingOpen] = useState(() => {
+    return currentPath.startsWith('/marketing');
+  });
 
   const mainItems = [
     { title: "Dashboard", path: "/", icon: Home },
@@ -38,6 +52,13 @@ const DashboardSidebar = () => {
   const aiItems = [
     { title: "Assistente IA", path: "/assistente-ia", icon: MessageSquare },
     { title: "Análises", path: "/analises", icon: Activity },
+  ];
+  
+  const marketingItems = [
+    { title: "Leads", path: "/marketing/leads", icon: Users },
+    { title: "Disparos", path: "/marketing/disparos", icon: Mail },
+    { title: "Ferramentas", path: "/marketing/ferramentas", icon: Tool },
+    { title: "Configurações", path: "/marketing/configuracoes", icon: Settings },
   ];
 
   const isActive = (path: string) => {
@@ -92,6 +113,57 @@ const DashboardSidebar = () => {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <SidebarGroup className="mt-4">
+          <SidebarGroupLabel>Marketing</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <SidebarMenuItem>
+                {!isCollapsed ? (
+                  <Collapsible 
+                    open={isMarketingOpen} 
+                    onOpenChange={setIsMarketingOpen}
+                    className="w-full"
+                  >
+                    <CollapsibleTrigger className="flex w-full items-center justify-between rounded-md px-3 py-2 text-sm hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground">
+                      <div className="flex items-center gap-3">
+                        <Radio className="h-4 w-4 shrink-0" />
+                        <span>Marketing</span>
+                      </div>
+                      {isMarketingOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+                    </CollapsibleTrigger>
+                    <CollapsibleContent className="pl-3 mt-1">
+                      <SidebarMenuSub>
+                        {marketingItems.map((item) => (
+                          <SidebarMenuSubItem key={item.path}>
+                            <SidebarMenuSubButton
+                              asChild
+                              isActive={isActive(item.path)}
+                            >
+                              <NavLink to={item.path} className="flex items-center gap-2">
+                                <item.icon className="h-4 w-4 shrink-0" />
+                                <span>{item.title}</span>
+                              </NavLink>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        ))}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </Collapsible>
+                ) : (
+                  <SidebarMenuButton asChild tooltip="Marketing">
+                    <NavLink 
+                      to="/marketing/leads" 
+                      className={getNavClasses}
+                    >
+                      <Radio className="h-4 w-4 shrink-0" />
+                    </NavLink>
+                  </SidebarMenuButton>
+                )}
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

@@ -15,6 +15,13 @@ import ConfiguracoesPage from "./pages/ConfiguracoesPage";
 import PublicAgendamentoPage from "./pages/PublicAgendamentoPage";
 import NotFound from "./pages/NotFound";
 
+// Marketing pages
+import LeadsPage from "./pages/marketing/LeadsPage";
+import DisparosPage from "./pages/marketing/DisparosPage";
+import NovoDisparoPage from "./pages/marketing/NovoDisparoPage";
+import FerramentasPage from "./pages/marketing/FerramentasPage";
+import ConfiguracoesMarketingPage from "./pages/marketing/ConfiguracoesMarketingPage";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -35,6 +42,14 @@ const App = () => (
           <Route path="/assistente-ia" element={<Dashboard><AssistenteIAPage /></Dashboard>} />
           <Route path="/analises" element={<Dashboard><AnalisesPage /></Dashboard>} />
           <Route path="/configuracoes" element={<Dashboard><ConfiguracoesPage /></Dashboard>} />
+          
+          {/* Rotas de marketing */}
+          <Route path="/marketing/leads" element={<Dashboard><LeadsPage /></Dashboard>} />
+          <Route path="/marketing/disparos" element={<Dashboard><DisparosPage /></Dashboard>} />
+          <Route path="/marketing/disparos/novo" element={<Dashboard><NovoDisparoPage /></Dashboard>} />
+          <Route path="/marketing/ferramentas" element={<Dashboard><FerramentasPage /></Dashboard>} />
+          <Route path="/marketing/configuracoes" element={<Dashboard><ConfiguracoesMarketingPage /></Dashboard>} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
