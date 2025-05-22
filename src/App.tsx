@@ -8,6 +8,7 @@ import Dashboard from "./components/layout/Dashboard";
 import DashboardPage from "./pages/DashboardPage";
 import AgendamentosPage from "./pages/AgendamentosPage";
 import PacientesPage from "./pages/PacientesPage";
+import NovoPacientePage from "./pages/NovoPacientePage";
 import ProntuariosPage from "./pages/ProntuariosPage";
 import AssistenteIAPage from "./pages/AssistenteIAPage";
 import AnalisesPage from "./pages/AnalisesPage";
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/" element={<Dashboard><DashboardPage /></Dashboard>} />
           <Route path="/agendamentos" element={<Dashboard><AgendamentosPage /></Dashboard>} />
           <Route path="/pacientes" element={<Dashboard><PacientesPage /></Dashboard>} />
+          <Route path="/pacientes/novo" element={<Dashboard><NovoPacientePage /></Dashboard>} />
           <Route path="/prontuarios" element={<Dashboard><ProntuariosPage /></Dashboard>} />
           <Route path="/assistente-ia" element={<Dashboard><AssistenteIAPage /></Dashboard>} />
           <Route path="/analises" element={<Dashboard><AnalisesPage /></Dashboard>} />
