@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Dashboard from "./components/layout/Dashboard";
 import DashboardPage from "./pages/DashboardPage";
 import AgendamentosPage from "./pages/AgendamentosPage";
+import NovoAgendamentoPage from "./pages/NovoAgendamentoPage";
 import PacientesPage from "./pages/PacientesPage";
 import NovoPacientePage from "./pages/NovoPacientePage";
 import ProntuariosPage from "./pages/ProntuariosPage";
@@ -38,6 +39,7 @@ const App = () => (
           {/* Rotas protegidas do dashboard */}
           <Route path="/" element={<Dashboard><DashboardPage /></Dashboard>} />
           <Route path="/agendamentos" element={<Dashboard><AgendamentosPage /></Dashboard>} />
+          <Route path="/agendamentos/novo" element={<Dashboard><NovoAgendamentoPage /></Dashboard>} />
           <Route path="/pacientes" element={<Dashboard><PacientesPage /></Dashboard>} />
           <Route path="/pacientes/novo" element={<Dashboard><NovoPacientePage /></Dashboard>} />
           <Route path="/prontuarios" element={<Dashboard><ProntuariosPage /></Dashboard>} />

@@ -9,9 +9,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { useNavigate } from "react-router-dom";
 
 const AgendamentosPage = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const navigate = useNavigate();
   
   // SEO optimization
   useEffect(() => {
@@ -35,7 +37,7 @@ const AgendamentosPage = () => {
           </p>
         </div>
         
-        <Button className="gap-2">
+        <Button className="gap-2" onClick={() => navigate("/agendamentos/novo")}>
           <Plus className="h-4 w-4" />
           Novo Agendamento
         </Button>
