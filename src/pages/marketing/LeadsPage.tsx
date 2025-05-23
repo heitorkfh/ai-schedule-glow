@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,6 +15,8 @@ const LEADS_DATA = [
 ];
 
 const LeadsPage = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
@@ -23,7 +26,7 @@ const LeadsPage = () => {
             Gerencie seus leads e potenciais clientes
           </p>
         </div>
-        <Button>
+        <Button onClick={() => navigate("/marketing/leads/novo")}>
           <Plus className="mr-2 h-4 w-4" />
           Novo Lead
         </Button>

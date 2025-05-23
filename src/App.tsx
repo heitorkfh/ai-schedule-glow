@@ -19,6 +19,7 @@ import NotFound from "./pages/NotFound";
 
 // Marketing pages
 import LeadsPage from "./pages/marketing/LeadsPage";
+import NovoLeadPage from "./pages/marketing/NovoLeadPage";
 import DisparosPage from "./pages/marketing/DisparosPage";
 import NovoDisparoPage from "./pages/marketing/NovoDisparoPage";
 import FerramentasPage from "./pages/marketing/FerramentasPage";
@@ -49,6 +50,7 @@ const App = () => (
           
           {/* Rotas de marketing */}
           <Route path="/marketing/leads" element={<Dashboard><LeadsPage /></Dashboard>} />
+          <Route path="/marketing/leads/novo" element={<Dashboard><NovoLeadPage /></Dashboard>} />
           <Route path="/marketing/disparos" element={<Dashboard><DisparosPage /></Dashboard>} />
           <Route path="/marketing/disparos/novo" element={<Dashboard><NovoDisparoPage /></Dashboard>} />
           <Route path="/marketing/ferramentas" element={<Dashboard><FerramentasPage /></Dashboard>} />
