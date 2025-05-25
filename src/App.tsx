@@ -15,6 +15,8 @@ import AssistenteIAPage from "./pages/AssistenteIAPage";
 import AnalisesPage from "./pages/AnalisesPage";
 import ConfiguracoesPage from "./pages/ConfiguracoesPage";
 import PublicAgendamentoPage from "./pages/PublicAgendamentoPage";
+import ProcedimentosPage from "./pages/ProcedimentosPage";
+import NovoProcedimentoPage from "./pages/NovoProcedimentoPage";
 import NotFound from "./pages/NotFound";
 
 // Marketing pages
@@ -43,6 +45,8 @@ const App = () => (
           <Route path="/agendamentos/novo" element={<Dashboard><NovoAgendamentoPage /></Dashboard>} />
           <Route path="/pacientes" element={<Dashboard><PacientesPage /></Dashboard>} />
           <Route path="/pacientes/novo" element={<Dashboard><NovoPacientePage /></Dashboard>} />
+          <Route path="/procedimentos" element={<Dashboard><ProcedimentosPage /></Dashboard>} />
+          <Route path="/procedimentos/novo" element={<Dashboard><NovoProcedimentoPage /></Dashboard>} />
           <Route path="/prontuarios" element={<Dashboard><ProntuariosPage /></Dashboard>} />
           <Route path="/assistente-ia" element={<Dashboard><AssistenteIAPage /></Dashboard>} />
           <Route path="/analises" element={<Dashboard><AnalisesPage /></Dashboard>} />
