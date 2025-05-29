@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { format, addWeeks, subWeeks, startOfWeek, addDays } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import AgendamentoDropdown from "./AgendamentoDropdown";
 
 // Mock data para agendamentos
 const mockAgendamentos = [
@@ -86,20 +87,32 @@ const AgendaSemanal = () => {
                 </div>
                 
                 {/* Colunas dos dias */}
-                {days.map((_, dayIndex) => {
+                {days.map((day, dayIndex) => {
                   const agendamentos = getAgendamentosPorDiaEHora(dayIndex, hora);
                   return (
                     <div key={dayIndex} className="p-1 border-b border-r min-h-[60px] relative">
                       {agendamentos.map((agendamento) => (
                         <div
                           key={agendamento.id}
-                          className={`${agendamento.cor} rounded-md p-2 text-xs mb-1 cursor-pointer hover:opacity-80 transition-opacity`}
+                          className={`${agendamento.cor} rounded-md p-2 text-xs mb-1 cursor-pointer hover:opacity-80 transition-opacity group relative`}
                         >
-                          <div className="font-medium truncate">
-                            {agendamento.nome}
-                          </div>
-                          <div className="text-xs opacity-75">
-                            {agendamento.tipo}
+                          <div className="flex justify-between items-start">
+                            <div className="flex-1 min-w-0">
+                              <div className="font-medium truncate">
+                                {agendamento.nome}
+                              </div>
+                              <div className="text-xs opacity-75">
+                                {agendamento.tipo}
+                              </div>
+                            </div>
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity ml-1">
+                              <AgendamentoDropdown 
+                                agendamentoId={agendamento.id}
+                                agendamentoName={agendamento.nome}
+                                currentTime={agendamento.hora}
+                                currentDate={format(day, "dd/MM/yyyy", { locale: ptBR })}
+                              />
+                            </div>
                           </div>
                         </div>
                       ))}
