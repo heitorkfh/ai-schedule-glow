@@ -11,8 +11,9 @@ import NovoAgendamentoPage from "./pages/NovoAgendamentoPage";
 import PacientesPage from "./pages/PacientesPage";
 import NovoPacientePage from "./pages/NovoPacientePage";
 import ProntuariosPage from "./pages/ProntuariosPage";
-import AssistenteIAPage from "./pages/AssistenteIAPage";
-import AnalisesPage from "./pages/AnalisesPage";
+// IA & Análises imports - COMMENTED OUT
+// import AssistenteIAPage from "./pages/AssistenteIAPage";
+// import AnalisesPage from "./pages/AnalisesPage";
 import ConfiguracoesPage from "./pages/ConfiguracoesPage";
 import PublicAgendamentoPage from "./pages/PublicAgendamentoPage";
 import ProcedimentosPage from "./pages/ProcedimentosPage";
@@ -26,6 +27,7 @@ import DisparosPage from "./pages/marketing/DisparosPage";
 import NovoDisparoPage from "./pages/marketing/NovoDisparoPage";
 import FerramentasPage from "./pages/marketing/FerramentasPage";
 import ConfiguracoesMarketingPage from "./pages/marketing/ConfiguracoesMarketingPage";
+import SelecionarDestinatariosPage from "./pages/marketing/SelecionarDestinatariosPage";
 
 const queryClient = new QueryClient();
 
@@ -48,8 +50,11 @@ const App = () => (
           <Route path="/procedimentos" element={<Dashboard><ProcedimentosPage /></Dashboard>} />
           <Route path="/procedimentos/novo" element={<Dashboard><NovoProcedimentoPage /></Dashboard>} />
           <Route path="/prontuarios" element={<Dashboard><ProntuariosPage /></Dashboard>} />
-          <Route path="/assistente-ia" element={<Dashboard><AssistenteIAPage /></Dashboard>} />
-          <Route path="/analises" element={<Dashboard><AnalisesPage /></Dashboard>} />
+          
+          {/* IA & Análises routes - COMMENTED OUT */}
+          {/* <Route path="/assistente-ia" element={<Dashboard><AssistenteIAPage /></Dashboard>} /> */}
+          {/* <Route path="/analises" element={<Dashboard><AnalisesPage /></Dashboard>} /> */}
+          
           <Route path="/configuracoes" element={<Dashboard><ConfiguracoesPage /></Dashboard>} />
           
           {/* Rotas de marketing */}
@@ -57,6 +62,7 @@ const App = () => (
           <Route path="/marketing/leads/novo" element={<Dashboard><NovoLeadPage /></Dashboard>} />
           <Route path="/marketing/disparos" element={<Dashboard><DisparosPage /></Dashboard>} />
           <Route path="/marketing/disparos/novo" element={<Dashboard><NovoDisparoPage /></Dashboard>} />
+          <Route path="/marketing/disparos/selecionar" element={<Dashboard><SelecionarDestinatariosPage /></Dashboard>} />
           <Route path="/marketing/ferramentas" element={<Dashboard><FerramentasPage /></Dashboard>} />
           <Route path="/marketing/configuracoes" element={<Dashboard><ConfiguracoesMarketingPage /></Dashboard>} />
           

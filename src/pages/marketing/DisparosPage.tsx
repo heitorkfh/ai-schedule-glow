@@ -1,135 +1,149 @@
 
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Mail, Plus, Search } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Plus, Search, Send, Users, Calendar, MessageSquare } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const DISPAROS_DATA = [
-  { id: 1, titulo: 'Promoção Maio', destinatarios: 'Todos', data: '12/05/2025 14:30', status: 'Enviado', taxa_abertura: '65%', canal: 'WhatsApp Oficial' },
-  { id: 2, titulo: 'Novos Serviços', destinatarios: 'Leads recentes', data: '25/05/2025 10:00', status: 'Agendado', taxa_abertura: '---', canal: 'WhatsApp Não-Oficial' },
-  { id: 3, titulo: 'Lembrete de Consulta', destinatarios: 'Pacientes do mês', data: '08/05/2025 09:15', status: 'Enviado', taxa_abertura: '78%', canal: 'WhatsApp Oficial' },
-  { id: 4, titulo: 'Dicas de Saúde', destinatarios: 'Todos', data: '30/05/2025 16:00', status: 'Agendado', taxa_abertura: '---', canal: 'WhatsApp Não-Oficial' }
+  { id: 1, titulo: 'Campanha Maio', destinatarios: 45, enviados: 45, abertos: 32, cliques: 8, data: '15/05/2025', status: 'Enviado' },
+  { id: 2, titulo: 'Lembrete Consultas', destinatarios: 12, enviados: 12, abertos: 10, cliques: 3, data: '10/05/2025', status: 'Enviado' },
+  { id: 3, titulo: 'Promoção Procedimentos', destinatarios: 78, enviados: 0, abertos: 0, cliques: 0, data: '20/05/2025', status: 'Agendado' },
 ];
 
 const DisparosPage = () => {
   const navigate = useNavigate();
-  
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Disparos</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Disparos de Marketing</h1>
           <p className="text-muted-foreground">
-            Gerencie suas mensagens em massa para leads e clientes
+            Gerencie suas campanhas de WhatsApp e email marketing
           </p>
         </div>
-        <Button onClick={() => navigate("/marketing/disparos/novo")}>
-          <Plus className="mr-2 h-4 w-4" />
-          Novo Disparo
-        </Button>
+        <div className="flex gap-2">
+          <Button 
+            variant="outline" 
+            onClick={() => navigate("/marketing/disparos/selecionar")}
+          >
+            <Users className="mr-2 h-4 w-4" />
+            Selecionar Destinatários
+          </Button>
+          <Button onClick={() => navigate("/marketing/disparos/novo")}>
+            <Plus className="mr-2 h-4 w-4" />
+            Novo Disparo
+          </Button>
+        </div>
       </div>
 
-      <Tabs defaultValue="todos" className="w-full">
-        <TabsList>
-          <TabsTrigger value="todos">Todos</TabsTrigger>
-          <TabsTrigger value="enviados">Enviados</TabsTrigger>
-          <TabsTrigger value="agendados">Agendados</TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="todos" className="space-y-4">
-          <div className="flex items-center space-x-2">
-            <div className="relative flex-1">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Buscar disparos..."
-                className="w-full pl-8"
-              />
-            </div>
-            <Button variant="outline">Filtros</Button>
-          </div>
+      <div className="flex items-center justify-between">
+        <div className="relative flex-1 max-w-md">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input
+            type="search"
+            placeholder="Buscar disparos..."
+            className="w-full pl-8"
+          />
+        </div>
+        <Button variant="outline">Filtros</Button>
+      </div>
 
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-medium flex items-center">
-                <Mail className="mr-2 h-5 w-5" /> 
-                Disparos
-              </CardTitle>
-              <CardDescription>
-                Você tem um total de {DISPAROS_DATA.length} disparos
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Título</TableHead>
-                    <TableHead>Destinatários</TableHead>
-                    <TableHead>Data/Hora</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Taxa de Abertura</TableHead>
-                    <TableHead>Canal</TableHead>
-                    <TableHead className="text-right">Ações</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {DISPAROS_DATA.map((disparo) => (
-                    <TableRow key={disparo.id}>
-                      <TableCell className="font-medium">{disparo.titulo}</TableCell>
-                      <TableCell>{disparo.destinatarios}</TableCell>
-                      <TableCell>{disparo.data}</TableCell>
-                      <TableCell>
-                        <div className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                          disparo.status === 'Enviado' ? 'bg-green-100 text-green-800' : 
-                          'bg-blue-100 text-blue-800'
-                        }`}>
-                          {disparo.status}
-                        </div>
-                      </TableCell>
-                      <TableCell>{disparo.taxa_abertura}</TableCell>
-                      <TableCell>{disparo.canal}</TableCell>
-                      <TableCell className="text-right">
-                        <Button variant="ghost" size="sm">Visualizar</Button>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
-        </TabsContent>
+      {/* Stats Cards */}
+      <div className="grid gap-4 md:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardTitle className="text-sm font-medium">Total de Disparos</CardTitle>
+            <Send className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{DISPAROS_DATA.length}</div>
+          </CardContent>
+        </Card>
         
-        <TabsContent value="enviados" className="space-y-4">
-          {/* Similar content as "todos" but filtered for sent messages */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-medium">Disparos Enviados</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Table>
-                {/* Similar table but filtered */}
-              </Table>
-            </CardContent>
-          </Card>
-        </TabsContent>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardTitle className="text-sm font-medium">Mensagens Enviadas</CardTitle>
+            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">
+              {DISPAROS_DATA.reduce((sum, disparo) => sum + disparo.enviados, 0)}
+            </div>
+          </CardContent>
+        </Card>
         
-        <TabsContent value="agendados" className="space-y-4">
-          {/* Similar content as "todos" but filtered for scheduled messages */}
-          <Card>
-            <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-medium">Disparos Agendados</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <Table>
-                {/* Similar table but filtered */}
-              </Table>
-            </CardContent>
-          </Card>
-        </TabsContent>
-      </Tabs>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardTitle className="text-sm font-medium">Taxa de Abertura</CardTitle>
+            <Calendar className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">74%</div>
+          </CardContent>
+        </Card>
+        
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+            <CardTitle className="text-sm font-medium">Taxa de Cliques</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">19%</div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-lg font-medium">Histórico de Disparos</CardTitle>
+          <CardDescription>
+            Acompanhe o desempenho de suas campanhas
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Campanha</TableHead>
+                <TableHead>Destinatários</TableHead>
+                <TableHead>Enviados</TableHead>
+                <TableHead>Abertos</TableHead>
+                <TableHead>Cliques</TableHead>
+                <TableHead>Data</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="text-right">Ações</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {DISPAROS_DATA.map((disparo) => (
+                <TableRow key={disparo.id}>
+                  <TableCell className="font-medium">{disparo.titulo}</TableCell>
+                  <TableCell>{disparo.destinatarios}</TableCell>
+                  <TableCell>{disparo.enviados}</TableCell>
+                  <TableCell>{disparo.abertos}</TableCell>
+                  <TableCell>{disparo.cliques}</TableCell>
+                  <TableCell>{disparo.data}</TableCell>
+                  <TableCell>
+                    <Badge className={`${
+                      disparo.status === 'Enviado' ? 'bg-green-100 text-green-800' : 
+                      'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {disparo.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-right">
+                    <Button variant="ghost" size="sm">Ver detalhes</Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
     </div>
   );
 };

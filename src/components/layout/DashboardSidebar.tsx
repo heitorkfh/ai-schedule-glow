@@ -6,8 +6,8 @@ import {
   Users, 
   FileText, 
   Settings,
-  Activity,
-  MessageSquare,
+  // Activity,
+  // MessageSquare,
   Radio,
   Mail,
   Wrench,
@@ -49,10 +49,11 @@ const DashboardSidebar = () => {
     { title: "Prontuários", path: "/prontuarios", icon: FileText },
   ];
 
-  const aiItems = [
-    { title: "Assistente IA", path: "/assistente-ia", icon: MessageSquare },
-    { title: "Análises", path: "/analises", icon: Activity },
-  ];
+  // IA & Análises items - COMMENTED OUT
+  // const aiItems = [
+  //   { title: "Assistente IA", path: "/assistente-ia", icon: MessageSquare },
+  //   { title: "Análises", path: "/analises", icon: Activity },
+  // ];
   
   const marketingItems = [
     { title: "Leads", path: "/marketing/leads", icon: Users },
@@ -76,7 +77,7 @@ const DashboardSidebar = () => {
   };
   
   const isMainExpanded = mainItems.some(item => isActive(item.path));
-  const isAiExpanded = aiItems.some(item => isActive(item.path));
+  // const isAiExpanded = aiItems.some(item => isActive(item.path)); // COMMENTED OUT
 
   return (
     <Sidebar className={`border-r ${isCollapsed ? "w-16" : "w-64"}`}>
@@ -99,6 +100,8 @@ const DashboardSidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
 
+        {/* IA & Análises Section - COMMENTED OUT */}
+        {/* 
         <SidebarGroup className="mt-4">
           <SidebarGroupLabel>IA & Análises</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -116,6 +119,7 @@ const DashboardSidebar = () => {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        */}
 
         <SidebarGroup className="mt-4">
           <SidebarGroupLabel>Marketing</SidebarGroupLabel>
