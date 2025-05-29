@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -10,6 +11,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { useNavigate } from "react-router-dom";
 import AgendaSemanal from "@/components/agendamentos/AgendaSemanal";
+import AgendamentoDropdown from "@/components/agendamentos/AgendamentoDropdown";
 
 const AgendamentosPage = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -127,9 +129,16 @@ const AgendamentosPage = () => {
                           }`}>
                             {appointment.status}
                           </span>
-                          <Button variant="ghost" size="sm">
-                            Detalhes
-                          </Button>
+                          <div className="flex items-center gap-1">
+                            <Button variant="ghost" size="sm">
+                              Detalhes
+                            </Button>
+                            <AgendamentoDropdown 
+                              agendamentoId={appointment.id}
+                              agendamentoName={appointment.name}
+                              currentTime={appointment.time}
+                            />
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -178,9 +187,17 @@ const AgendamentosPage = () => {
                       }`}>
                         {appointment.status}
                       </span>
-                      <Button variant="ghost" size="sm">
-                        Detalhes
-                      </Button>
+                      <div className="flex items-center gap-1">
+                        <Button variant="ghost" size="sm">
+                          Detalhes
+                        </Button>
+                        <AgendamentoDropdown 
+                          agendamentoId={appointment.id}
+                          agendamentoName={appointment.name}
+                          currentTime={appointment.time}
+                          currentDate={appointment.date}
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -239,9 +256,17 @@ const AgendamentosPage = () => {
                       </span>
                     </div>
                     <div className="col-span-2 text-right">
-                      <Button variant="ghost" size="sm" className="h-8 px-2">
-                        Detalhes
-                      </Button>
+                      <div className="flex items-center justify-end gap-1">
+                        <Button variant="ghost" size="sm" className="h-8 px-2">
+                          Detalhes
+                        </Button>
+                        <AgendamentoDropdown 
+                          agendamentoId={appointment.id}
+                          agendamentoName={appointment.name}
+                          currentTime={appointment.time}
+                          currentDate={appointment.date}
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}
